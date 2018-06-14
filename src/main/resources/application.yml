@@ -11,3 +11,9 @@ spring:
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.universtiy.libray.domain
+
+#日志
+logging:
+    file: D:/logs/mylog.log
+    level:
+      root: info
