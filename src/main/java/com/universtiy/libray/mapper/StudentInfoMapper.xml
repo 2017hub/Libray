@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.universtiy.libray.mapper.StudentInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.universtiy.libray.domain.StudentInfo" >
+    <id column="st_id" property="stId" jdbcType="VARCHAR" />
+    <result column="st_no" property="stNo" jdbcType="VARCHAR" />
+    <result column="st_name" property="stName" jdbcType="VARCHAR" />
+    <result column="grend" property="grend" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    st_id, st_no, st_name, grend, grade
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from student_info
+    where st_id = #{stId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from student_info
+    where st_id = #{stId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.universtiy.libray.domain.StudentInfo" >
+    insert into student_info (st_id, st_no, st_name, 
+      grend, grade)
+    values (#{stId,jdbcType=VARCHAR}, #{stNo,jdbcType=VARCHAR}, #{stName,jdbcType=VARCHAR}, 
+      #{grend,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.universtiy.libray.domain.StudentInfo" >
+    insert into student_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="stId != null" >
+        st_id,
+      </if>
+      <if test="stNo != null" >
+        st_no,
+      </if>
+      <if test="stName != null" >
+        st_name,
+      </if>
+      <if test="grend != null" >
+        grend,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="stId != null" >
+        #{stId,jdbcType=VARCHAR},
+      </if>
+      <if test="stNo != null" >
+        #{stNo,jdbcType=VARCHAR},
+      </if>
+      <if test="stName != null" >
+        #{stName,jdbcType=VARCHAR},
+      </if>
+      <if test="grend != null" >
+        #{grend,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.universtiy.libray.domain.StudentInfo" >
+    update student_info
+    <set >
+      <if test="stNo != null" >
+        st_no = #{stNo,jdbcType=VARCHAR},
+      </if>
+      <if test="stName != null" >
+        st_name = #{stName,jdbcType=VARCHAR},
+      </if>
+      <if test="grend != null" >
+        grend = #{grend,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where st_id = #{stId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.universtiy.libray.domain.StudentInfo" >
+    update student_info
+    set st_no = #{stNo,jdbcType=VARCHAR},
+      st_name = #{stName,jdbcType=VARCHAR},
+      grend = #{grend,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=VARCHAR}
+    where st_id = #{stId,jdbcType=VARCHAR}
+  </update>
+</mapper>
