@@ -6,9 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+@CrossOrigin//解决跨域的问题
 @Controller
 public class StudentInfoController {
 
@@ -26,6 +27,18 @@ public class StudentInfoController {
 
         StudentInfo studentInfo1 =studentInfoService.selectByPrimaryKey(id);
         System.out.println("-----s----->"+studentInfo1.getStName());
-        return "StudentInfoController";
+        return studentInfo1.getStId();
     }
+    @RequestMapping("/nav")
+    public String iform(){
+        return  "index";
+    }
+
+    @CrossOrigin({"http://localhost:8081", "http://localhost:8082"})
+    @RequestMapping("/main")
+    public String index(){
+        logger.info("---------main--->");
+        return  "main";
+    }
+
 }

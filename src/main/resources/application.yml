@@ -17,3 +17,6 @@ logging:
     file: D:/logs/mylog.log
     level:
       root: info
+
+#模板引擎
+#spring:

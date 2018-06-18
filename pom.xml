@@ -22,6 +22,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <!--<thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>-->
+        <!--<thymeleaf-layout-dialect.version>2.1.1</thymeleaf-layout-dialect.version>-->
     </properties>
 
     <dependencies>
@@ -33,6 +35,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!--模板引擎-->
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <version>2.0.2.RELEASE</version>
+        </dependency>
+
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -74,23 +84,19 @@
             </plugin>
         </plugins>
     <resources>
-        <!--<resource>-->
-            <!--<directory>src/main/resources</directory>-->
-            <!--<filtering>true</filtering>-->
-            <!--<excludes>-->
-                <!--<exclude>static/fonts/**</exclude>-->
-                <!--<exclude>static/frame/layui/font/**</exclude>-->
-                <!--<exclude>application.properties</exclude>-->
-                <!--<exclude>application-dev.properties</exclude>-->
-                <!--<exclude>application-test.properties</exclude>-->
-                <!--<exclude>application-prod.properties</exclude>-->
-            <!--</excludes>-->
-        <!--</resource>-->
+        <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+            <excludes>
+                <exclude>static/fonts/**</exclude>
+            </excludes>
+        </resource>
         <resource>
             <directory>src/main/resources</directory>
             <filtering>true</filtering>
             <includes>
-                <include>application.yml</include>
+                <include>**/*.yml</include>
+
             </includes>
         </resource>
         <resource>
