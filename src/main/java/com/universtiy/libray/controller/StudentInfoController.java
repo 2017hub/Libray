@@ -6,6 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,16 +32,24 @@ public class StudentInfoController {
         System.out.println("-----s----->"+studentInfo1.getStName());
         return studentInfo1.getStId();
     }
-    @RequestMapping("/nav")
-    public String iform(){
-        return  "index";
-    }
 
-    @CrossOrigin({"http://localhost:8081", "http://localhost:8082"})
-    @RequestMapping("/main")
-    public String index(){
-        logger.info("---------main--->");
-        return  "main";
-    }
+    /**
+     * 增加一个学生信息
+     */
 
+    @RequestMapping("/addStuInfo")
+    public void addStudentInfo(StudentInfo studentInfo){
+        int row=0;
+        try {
+           row=  studentInfoService.insertSelective(studentInfo);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+      if(row>0){
+          logger.info("---------->学生信息添加成功！");
+      }else{
+          logger.info("---------->学生信息添加失败！");
+      }
+    }
 }
